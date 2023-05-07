@@ -14377,6 +14377,16 @@ GROUP BY user_contratti.recordid_
             }
         }
     }
+    
+    
+    public function word_to_pdf($wordname)
+    {
+        $userid=$this->get_userid();
+        $pdfname=str_replace('docx','pdf',$wordname);
+        $command='cd ./tools/OfficeToPDF/ && OfficeToPDF.exe "../../stampe/'.$userid.'/'.$wordname.'" "../../stampe/'.$userid.'/'.$pdfname.'" ';
+        exec($command); 
+        return $pdfname;
+    }
 
     
     
