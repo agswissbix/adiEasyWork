@@ -70,5 +70,5 @@ $document->setValue('altreattivitano', $altreattivitano);
 
 
 
-$document->save('../JDocServer/DocumentiGenerati/'.$nomecognome.'-'.$id.'-'.$documento);
+$document->save('../JDocServer/DocumentiCreati/'.$nomecognome.'-'.$id.'-'.$documento);
 ?>
