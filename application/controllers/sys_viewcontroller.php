@@ -14115,6 +14115,7 @@ GROUP BY user_contratti.recordid_
         //dati professionali
         //$dataentrata=$candidato_progel[''];
         
+        /*
         $attivitasecondaria=$candidato_progel['employee_customAttivitaSecondaria'];
         if($this->isnotempty($attivitasecondaria))
         {
@@ -14126,7 +14127,7 @@ GROUP BY user_contratti.recordid_
             $data['altreattivitasi']="";
             $data['altreattivitano']="X";
         }
-
+        */
         
         
         $documenti=$post['documenti'];
