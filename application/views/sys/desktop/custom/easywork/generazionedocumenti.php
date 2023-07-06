@@ -113,26 +113,9 @@
                         <?php
                         foreach ($documenti as $key => $documento) {
                             $checked='';
-                            $docid=$documento['ID'];
-                            if( $docid=='1398' ||
-                                    $docid=='1363' ||
-                                    $docid=='1364' ||
-                                    $docid=='1365' ||
-                                    $docid=='1366' ||
-                                    $docid=='1367' ||
-                                    $docid=='1368' ||
-                                    $docid=='1369' ||
-                                    $docid=='1370' ||
-                                    $docid=='1371' ||
-                                    $docid=='1372' ||
-                                    $docid=='1373' ||
-                                    $docid=='1381' ||
-                                    $docid=='1382' ||
-                                    $docid=='1383' ||
-                                    $docid=='1399'
-                                    )
+                            if( $documento['selected']=='Si')
                             {
-                            $checked='checked';
+                                $checked='checked';
                             }
                         ?>
                         <p>
