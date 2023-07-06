@@ -34,6 +34,7 @@
             url: '<?=site_url('sys_viewcontroller/custom_easywork_generadocumenti')?>',
             data: serialized,
             success: function( response ) {
+                console.info(response);
             },
             error:function(){
             }
