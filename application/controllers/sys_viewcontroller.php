@@ -14131,6 +14131,7 @@ GROUP BY user_contratti.recordid_
         
         
         $documenti=$post['documenti'];
+        var_dump($documenti);
         foreach ($documenti as $key => $documento) {
             $documento_array= explode('.', $documento);
             $documentonoext=$documento_array[0];
@@ -14138,6 +14139,7 @@ GROUP BY user_contratti.recordid_
             if($ext=='pdf')
             {
                 $command='copy "..\\JDocServer\\modelli\\'.$documento.'" "..\\JDocServer\\DocumentiConvertiti\\'.$nomecognome.'-'.$candidato_id.'-'.$documento.'" ';
+                echo $command."<br/>";
                 exec($command);
             }
             if($ext=='docx')
