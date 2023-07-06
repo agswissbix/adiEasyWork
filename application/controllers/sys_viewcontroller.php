@@ -13966,6 +13966,8 @@ GROUP BY user_contratti.recordid_
             $data['datanascita_yyyy']="";
         }
         
+        $data['sesso_m']='';
+        $data['sesso_f']='';
         if(($genere==1)||($genere=='1'))
         {
             $data['sesso_m']="X";
@@ -14115,7 +14117,7 @@ GROUP BY user_contratti.recordid_
         //dati professionali
         //$dataentrata=$candidato_progel[''];
         
-        /*
+        
         $attivitasecondaria=$candidato_progel['employee_customAttivitaSecondaria'];
         if($this->isnotempty($attivitasecondaria))
         {
@@ -14127,7 +14129,7 @@ GROUP BY user_contratti.recordid_
             $data['altreattivitasi']="";
             $data['altreattivitano']="X";
         }
-        */
+        
         
         
         $documenti=$post['documenti'];
