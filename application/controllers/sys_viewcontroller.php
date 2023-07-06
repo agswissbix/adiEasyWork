@@ -13894,7 +13894,7 @@ GROUP BY user_contratti.recordid_
         $data=array();
         $sql="SELECT * FROM V_Adi_L1001_Candidati";
         $candidati=$this->Sys_model->select($sql);
-        $sql="SELECT * FROM V_Adi_TLVL_Documenti order by Documento asc";
+        $sql="SELECT * FROM V_Adi_Documenti order by Documento asc";
         $documenti=$this->Sys_model->select($sql);
         $data['candidati']=$candidati;
         $data['documenti']=$documenti;
@@ -13946,9 +13946,9 @@ GROUP BY user_contratti.recordid_
         $data['nomecognomemaiusc']= strtoupper($nomecognome);
         $data['email']=$candidato['Email'];
         $data['dataassunzione']=$post['data'];
-        $data['indirizzo']=$candidato['Indirizzo'];
-        $data['cap']=$candidato['CAP'];
-        $data['paese']=$candidato['Paese'];
+        $data['indirizzo']=$candidato_progel['employee_address'];
+        $data['cap']=$candidato_progel['employee_addressPostalCode'];
+        $data['paese']=$candidato_progel['employee_addressLocality'];
         $genere=$candidato['Genere'];
         
         $data['numeroavs']=$candidato_progel['employee_socialInsuranceNumber'];
@@ -14136,7 +14136,7 @@ GROUP BY user_contratti.recordid_
             $ext=$documento_array[1];
             if($ext=='pdf')
             {
-                $command='copy "..\\JDocServer\\modelli\\'.$documento.'" "..\\JDocServer\\DocumentiGenerati\\'.$nomecognome.'-'.$candidato_id.'-'.$documento.'" ';
+                $command='copy "..\\JDocServer\\modelli\\'.$documento.'" "..\\JDocServer\\DocumentiConvertiti\\'.$nomecognome.'-'.$candidato_id.'-'.$documento.'" ';
                 exec($command);
             }
             if($ext=='docx')
@@ -14156,6 +14156,7 @@ GROUP BY user_contratti.recordid_
         
         if($converti=='true')
         {
+			sleep(15);
             $this->custom_easywork_convertidocumenti();
             //$this->custom_easywork_spostainfirma();
         }
@@ -14378,14 +14379,50 @@ GROUP BY user_contratti.recordid_
         }
     }
     
-    
+    public function custom_easywork_convertidocumenti_word_to_pdf()
+    {
+        $files = scandir('../JDocServer/DocumentiGenerati');
+        foreach ($files as $key => $file) {
+            $pos=  strpos($file, '.');
+            if($pos !== false) 
+            {
+				if($file[0]!="~")
+				{
+					$file_array= explode('.', $file);
+					$filenoext=$file_array[0];
+					$ext=$file_array[1];
+					if($ext=='docx')
+					{
+							$this->word_to_pdf($file);
+						
+					}
+					if($ext=='pdf')
+					{
+							$command='move "..\\JDocServer\\DocumentiGenerati\\'.$file.'" "..\\JDocServer\\DocumentiDaFirmare\\'.$file.'" ';
+							exec($command);
+					}
+				}	
+                
+                
+            }
+        }
+    }
+	
     public function word_to_pdf($wordname)
     {
         $pdfname=str_replace('docx','pdf',$wordname);
-        $command='cd ./tools/OfficeToPDF/ && OfficeToPDF.exe "../../../JDocServer/test/'.$wordname.'" "../../../JDocServer/test/'.$pdfname.'" ';
-        exec($command); 
+        $command='cd ./tools/OfficeToPDF/ && OfficeToPDF.exe "../../../JDocServer/input/'.$wordname.'" "../../../JDocServer/output/'.$pdfname.'" ';
+        echo $command."<br/><br/><br/>";
+		echo exec($command); 
         return $pdfname;
     }
+	
+	public function convertAll()
+	{
+		$command='cd ./tools/OfficeToPDF/ && ConvertAll.bat';
+		echo $command."<br/><br/><br/>";
+		echo exec($command);
+	}	
 
     
     

@@ -151,20 +151,16 @@
         <div class="col s4" style="padding: 50px;">
             
             <div class="row">
-                <div class="btn waves-effect waves-light" onclick="creacopertina()" >Crea Copertina 
+                <div class="btn waves-effect waves-light" onclick="creacopertina()" >Crea_Copertina 
                     <i class="material-icons right">send</i>
                 </div>
             </div>
             <div class="row">
-                <div class="btn waves-effect waves-light" onclick="crea()">Crea Documenti
+                <div class="btn waves-effect waves-light" onclick="crea()">Crea_Documenti
                     <i class="material-icons right">send</i>
                 </div>
             </div>
-            <div class="row">
-                <div class="btn waves-effect waves-light" onclick="converti()">Converti
-                    <i class="material-icons right">send</i>
-                </div>
-            </div>
+           
             
            
             <div id="modal1" class="modal">
