@@ -113,7 +113,7 @@
                         <?php
                         foreach ($documenti as $key => $documento) {
                             $checked='';
-                            if( $documento['selected']=='Si')
+                            if( $documento['Selected']=='Si')
                             {
                                 $checked='checked';
                             }
